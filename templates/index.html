@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Tool</title>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arimo', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+        input[type="text"], input[type="url"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333333;
+        }
+    </style>
+    <script>
+        function toggleInput(field) {
+            const textInput = document.getElementById('text_input');
+            const linkInput = document.getElementById('link_input');
+            if (field === 'text') {
+                if (textInput.value) {
+                    linkInput.style.display = 'none';
+                } else {
+                    linkInput.style.display = 'block';
+                }
+            } else if (field === 'link') {
+                if (linkInput.value) {
+                    textInput.style.display = 'none';
+                } else {
+                    textInput.style.display = 'block';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Prediction Using LSTM</h1>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}" method="post">
+            <input type="text" id="text_input" name="text_input" placeholder="Enter text here" oninput="toggleInput('text')" />
+            <input type="url" id="link_input" name="link_input" placeholder="Enter link here" oninput="toggleInput('link')" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        <div id="results">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>

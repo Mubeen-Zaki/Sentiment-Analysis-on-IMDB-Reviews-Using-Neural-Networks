@@ -1,0 +1,12 @@
+Flask==2.0.2
+beautifulsoup4==4.10.0
+keras==2.6.0
+matplotlib==3.5.1
+nltk==3.6.8
+numpy==1.22.3
+pandas==1.4.5
+requests==2.26.0
+scikit-learn==1.0.2
+seaborn==0.11.2
+sumy==0.8.1
+tensorflow==2.7.0
