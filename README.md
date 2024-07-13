@@ -49,4 +49,3 @@ See `requirements.txt` for a list of Python libraries required to run the app.
 ## License
 
 This project is licensed under the MIT License.
-```
